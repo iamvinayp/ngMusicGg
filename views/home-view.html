@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-xs-12 col-md-offset-2 col-md-8">
+      <span class="h3"><p class="text-center">Music Tracks(click to edit)</p></span>
+      <div class="form-group" id="inputContainer">
+        <input class="form-control" type="text" id="searchTrack" ng-model="searchTrack" placeholder=" Search Title"/>
+        <span class="glyphicon glyphicon-search" id="searchIcon"></span>
+        <span class="glyphicon glyphicon-remove-sign" id="removeIcon" ng-click="emptySearchBox();"></span>
+      </div>
+      <br/>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="track in tracks | filter: searchTrack | startFrom : (currentPage - 1) * pageSize | limitTo : pageSize track by $index">
+          <a ng-href="#!track/{{track.id}}">
+          <div class="row">
+            <div class="col-xs-9" ng-if="track.genres">
+              {{track.name}}&emsp;&#91;{{track.genres}}&#93;
+            </div>
+            <div class="col-xs-9" ng-if="!track.genres">
+              {{track.name}}&emsp;
+            </div>
+            <div class="col-xs-3">
+              <ng-rating></ng-rating>
+            </div>
+          </div>
+          </a>
+        </li>
+      </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-offset-2 col-xs-9 col-md-offset-3 col-md-9">
+    <div class="row">
+      <div class="col-xs-6 col-md-5">
+        <a class="btn btn-default btn-custom" href="#!track"><h4>Add New Track</h4></a>
+      </div>
+      <div class="col-xs-6 col-md-5">
+        <a class="btn btn-default btn-custom" href="#!genres"><h4>View Genres</h4></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br/>
+<div class="row">
+  <div class="col-xs-offset-2 col-xs-10 col-md-offset-3 col-md-9">
+    <ul uib-pagination total-items="tracks.length" boundary-links="true" max-size="8"ng-model="currentPage" items-per-page="pageSize">
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-5">
+      <span class="h3"><p class="text-center">Track's Genres(click to edit)</p></span>
+      <br/>
+      <div class="input-group">
+        <input class="form-control" type="text" ng-model="searchGenre" placeholder=" Search genres"/>
+        <span class="input-group-addon glyphicon glyphicon-search"></span>
+      </div>
+      <br/>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="genre in genres | filter : searchGenre | startFrom : (currentPage - 1) * pageSize | limitTo : pageSize">
+         <a ng-href="#!genre/{{genre.id}}">
+          <div class="row">
+            <div class="col-xs-9">
+              {{genre.name}}
+            </div>
+          </div>
+         </a>
+        </li>
+      </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-offset-2 col-xs-9 col-md-offset-4 col-md-5">
+    <a class="btn btn-default" href="#!genre"><h5>Add New Genre</h5></a>
+    <a class="btn btn-default" href="#!home"><h5>Back to home</h5></a>
+  </div>
+</div>
+
+<br/>
+<div class="row">
+  <div class="col-xs-offset-2 col-xs-10 col-md-offset-3 col-md-9">
+    <ul uib-pagination total-items="genres.length" boundary-links="true" max-size="8" ng-model="currentPage" items-per-page="pageSize">
+    </ul>
+  </div>
+</div>

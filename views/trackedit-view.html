@@ -1,0 +1,31 @@
+<div class="row" ng-init="getResponse(1);getTrackById();">
+  <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+    <h4>Edit Track</h4>
+      <form>
+        <div class="form-group">
+          <label>Name</label>
+          <input class="form-control" type="text" ng-model="trackTitle" placeholder="Track name" required>
+        </div>
+        <div class="form-group">
+          <label>Genre(previous selected genres are preselected)</label>
+          <select class="form-control" ng-model="trackGenre" multiple>
+            <option value="{{dupGenre.id}}" ng-repeat="dupGenre in dupGenres track by $index">
+                {{dupGenre.name}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Rating</label>
+          <input class="form-control" type="number" ng-model="trackRating" min="1" max="10" required>
+        </div>
+      </form>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+    <button class="btn btn-primary" ng-click="editTrack();">Update</button>
+    <a class="btn btn-primary" href="#!home">Back to home</a>
+  </div>
+</div>
